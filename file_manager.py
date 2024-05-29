@@ -9,23 +9,29 @@ def get_folders(file_path):
 
 def get_files(file_path):
     files = []
+    exts = ['.png', '.jpg', '.jpeg', '.webp']
     try:
         raw_files = os.listdir(file_path)
     except:
         return files
     
     for file in raw_files:
-        if file.lower().endswith(('.png', '.jpg', '.jpeg')):
+        if any(file.lower().endswith(ext) for ext in exts):
             files.append(file)
         else:
-            delete(file)
-
+            delete(os.path.join(file_path, file))
     files.sort()
     return files
 
 
 def delete(file):
-    print(f'DELETE:{file}')
+    try:
+        os.remove(file)
+    except:
+        try:
+            shutil.rmtree(file)
+        except:
+            print(f'Cannot remove {file}')
 
 
 def rename_webp(file, file_count, folder_path, i):
@@ -40,3 +46,4 @@ def rename_cbz(folder_path):
     new_file = f'{folder_path}.cbz'
     old_file = f'{folder_path}.zip'
     shutil.copy(old_file, new_file)
+    delete(old_file)
