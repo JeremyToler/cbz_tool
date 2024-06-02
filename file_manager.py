@@ -1,6 +1,13 @@
 import os
 import shutil
 
+def copy_everything(source, dest):
+    if os.path.isdir(dest):
+        response = input(f'Overwrite {dest}? y/N:  ')
+        if response.lower() == 'y':
+            shutil.rmtree(dest)
+    shutil.copytree(source, dest)
+
 
 def get_folders(file_path):
     dirs = os.listdir(file_path)
@@ -41,6 +48,7 @@ def rename_webp(file, file_count, folder_path, i):
         shutil.copy(old_file, new_file)
         delete(file)
         delete(f'{file}.webp')
+
 
 def rename_cbz(folder_path):
     new_file = f'{folder_path}.cbz'
