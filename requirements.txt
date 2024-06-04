@@ -1,0 +1,2 @@
+archivefile==0.3.1
+Pillow==9.5.0

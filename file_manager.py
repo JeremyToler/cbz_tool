@@ -1,5 +1,6 @@
 import os
 import shutil
+from pathlib import Path
 
 def copy_everything(source, dest):
     if os.path.isdir(dest):
@@ -50,8 +51,13 @@ def rename_webp(file, file_count, folder_path, i):
         delete(f'{file}.webp')
 
 
-def rename_cbz(folder_path):
-    new_file = f'{folder_path}.cbz'
-    old_file = f'{folder_path}.zip'
-    shutil.copy(old_file, new_file)
-    delete(old_file)
+def no_ext(file_path):
+    path = Path(file_path)
+    return path.resolve().stem
+
+def flatten_dir(old_file, folder_path):
+    file = os.path.basename(old_file)
+    new_file = os.path.join(folder_path, file)
+    if not os.path.isfile(new_file):
+        shutil.copy(old_file, new_file)
+        delete(old_file)
