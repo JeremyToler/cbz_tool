@@ -18,6 +18,7 @@ def get_folders(file_path):
 def get_files(file_path):
     files = []
     exts = ['.png', '.jpg', '.jpeg', '.webp']
+    
     try:
         raw_files = os.listdir(file_path)
     except:
@@ -28,6 +29,7 @@ def get_files(file_path):
             files.append(file)
         else:
             delete(os.path.join(file_path, file))
+
     files.sort()
     return files
 
@@ -54,6 +56,7 @@ def rename_webp(file, file_count, folder_path, i):
 def no_ext(file_path):
     path = Path(file_path)
     return path.resolve().stem
+
 
 def flatten_dir(old_file, folder_path):
     file = os.path.basename(old_file)
