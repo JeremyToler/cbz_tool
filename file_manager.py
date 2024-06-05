@@ -18,7 +18,6 @@ def get_folders(file_path):
 def get_files(file_path):
     files = []
     exts = ['.png', '.jpg', '.jpeg', '.webp']
-    
     try:
         raw_files = os.listdir(file_path)
     except:
@@ -34,23 +33,19 @@ def get_files(file_path):
     return files
 
 
-def delete(file):
+def delete(file_path):
     try:
-        os.remove(file)
+        os.remove(file_path)
     except:
         try:
-            shutil.rmtree(file)
+            shutil.rmtree(file_path)
         except:
-            print(f'Cannot remove {file}')
+            print(f'Cannot remove {file_path}')
 
 
-def rename_webp(file, file_count, folder_path, i):
-        didgets = len(str(file_count))
-        old_file = f'{file}.webp'
-        new_file = os.path.join(folder_path, f'{i:0{didgets}d}.webp')
+def rename_webp(old_file, new_file):
         shutil.copy(old_file, new_file)
-        delete(file)
-        delete(f'{file}.webp')
+        delete(old_file)
 
 
 def no_ext(file_path):

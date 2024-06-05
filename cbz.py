@@ -30,8 +30,11 @@ def main(source, dest):
                 continue
             file_path = os.path.join(folder_path, files[i])
             compress.to_webp(file_path)
-            file_manager.rename_webp(file_path, file_count, folder_path, i)
-
+            didgets = len(str(file_count))
+            old_file = f'{files[i]}.webp'
+            new_file = os.path.join(folder_path, f'{i:0{didgets}d}.webp')
+            file_manager.rename_webp(old_file, new_file)
+            
         compress.to_cbz(folder_path)
     
 

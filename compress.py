@@ -10,6 +10,7 @@ def to_webp(file_path):
                lossless=False,
                method = 6,
                quality = 80)
+    file_manager.delete(file_path)
 
 
 def to_cbz(folder_path):

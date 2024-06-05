@@ -15,7 +15,7 @@ python cbz.py /home/cooldavid/downloads/comics /home/cooldavid/cbzs
 Mega Jose has a server that automaticly downloads new comics, rad!  They use crontab to automate compressing the comics
 
 ```javascript
-0 */2 * * * python cbz.py /home/megajose/comics/downloads /home/megajose/comics
+0 */2 * * *  yes | python cbz.py /home/megajose/comics/downloads /home/megajose/comics
 ```
 
 ## Features
