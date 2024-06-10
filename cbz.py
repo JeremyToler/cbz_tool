@@ -31,7 +31,7 @@ def main(source, dest):
             file_path = os.path.join(folder_path, files[i])
             compress.to_webp(file_path)
             didgets = len(str(file_count))
-            old_file = f'{files[i]}.webp'
+            old_file = os.path.join(folder_path, f'{files[i]}.webp')
             new_file = os.path.join(folder_path, f'{i:0{didgets}d}.webp')
             file_manager.rename_webp(old_file, new_file)
             
